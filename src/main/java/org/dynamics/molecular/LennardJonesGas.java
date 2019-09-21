@@ -12,6 +12,7 @@ public class LennardJonesGas {
     private static final double height = 200;
     private static final double width = 400;
     private double dt;
+    private double hole = 25;
     private CellIndexMethod cim;
     public int SAVE_CYCLE;
 
@@ -111,7 +112,7 @@ public class LennardJonesGas {
         else if(p.getXD()[0] >= width - 5){
             return -getForceModule(width - p.getXD()[0]);
         }
-        else if(Math.abs(p.getXD()[0] - width/2) <= 5 && (p.getYD()[0] < height/2 - 25 || p.getYD()[0] > height/2 + 25)){
+        else if(Math.abs(p.getXD()[0] - width/2) <= 5 && (p.getYD()[0] < height/2 - hole || p.getYD()[0] > height/2 + hole)){
             if(p.getXD()[0] > width/2)
                 return getForceModule(p.getXD()[0] - width/2);
             else
@@ -249,6 +250,47 @@ public class LennardJonesGas {
             }
             if (te > EPSILON && t >= 2 * te) {
                 finished = true;
+            }
+            t+=dt;
+            k++;
+        }
+        io.handlePartialOutput();
+        ioFr.handlePartialOutput();
+    }
+
+
+    public void simulateT(double dt, double hole, IOManager io, IOManager ioFr) {
+        this.dt = dt;
+        this.SAVE_CYCLE = (int)((1.0/dt) * 0.1);
+        long k = 0;
+        double fr = 0.0;
+        double te = 0;
+        double t = 0;
+        boolean finished = false;
+
+        io.output.append(toString()); // Append normal data
+        cim.setParticles(particles);
+        cim.calculateCells();
+        this.hole = hole;
+
+        while (!finished) {
+            ioFr.output.append(k).append(" ").append(fr).append(" ").append(t).append('\n');
+            Arrays.stream(particles).forEach(this::updatePosition);
+            cim.calculateCells();
+            Arrays.stream(particles).forEach(this::updateAcceleration);
+            Arrays.stream(particles).forEach(this::updateVelocity);
+            fr = calculateFR();
+            if (k % SAVE_CYCLE == 0) {
+                io.output.append(toString());
+                System.out.println(k + " " + fr + " " + t);
+            }
+            if (k % (SAVE_CYCLE * 100) == 0) { // write buffer to file and clean string buffer to save memory
+                io.handlePartialOutput();
+                ioFr.handlePartialOutput();
+            }
+            if (fr >= 0.48) {
+                finished = true;
+                System.out.println("Encontramos te: " + te + " en la iteracion: " + k);
             }
             t+=dt;
             k++;

@@ -47,6 +47,14 @@ public class App
             ljg.simulate2t(Double.parseDouble(args[1]), io, io2);
             Message.SimulationEnded.print();
         }
+        else if(args.length == 4 && args[0].equals("lennard-t")) {
+            IOManager io = new IOManager("lennard-2t");
+            IOManager io2 = new IOManager("lennard-2t-fr");
+            Message.SimulationRunning.print();
+            LennardJonesGas ljg = new LennardJonesGas(Integer.valueOf(args[2]));
+            ljg.simulateT(Double.parseDouble(args[1]), Double.parseDouble(args[3]), io, io2);
+            Message.SimulationEnded.print();
+        }
         else if(args.length == 3 && args[0].equals("energy")) {
             LennardJonesGas ljg = null;
             double dt = Double.valueOf(args[1]);

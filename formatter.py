@@ -11,8 +11,8 @@ b2=90
 room_border_color = QColor(100,100,100)
 width = 400.0
 height = 200.0
-y1 = height/2 - 5
-y2 = height/2 + 5
+y1 = height/2 - 25
+y2 = height/2 + 25
 border_lines = [
 	[0.0, 0.0, width, 0.0], #Bottom
 	[width, 0.0, width, height], #Right
