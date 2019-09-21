@@ -48,8 +48,8 @@ public class App
             Message.SimulationEnded.print();
         }
         else if(args.length == 4 && args[0].equals("lennard-t")) {
-            IOManager io = new IOManager("lennard-2t");
-            IOManager io2 = new IOManager("lennard-2t-fr");
+            IOManager io = new IOManager("lennard-t");
+            IOManager io2 = new IOManager("lennard-t-fr");
             Message.SimulationRunning.print();
             LennardJonesGas ljg = new LennardJonesGas(Integer.valueOf(args[2]));
             ljg.simulateT(Double.parseDouble(args[1]), Double.parseDouble(args[3]), io, io2);
