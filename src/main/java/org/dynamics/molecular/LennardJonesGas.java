@@ -218,7 +218,7 @@ public class LennardJonesGas {
     public void simulate2t(double dt, IOManager io, IOManager ioFr) {
         this.dt = dt;
         this.SAVE_CYCLE = (int)((1.0/dt) * 0.1);
-        int k = 0;
+        long k = 0;
         double fr = 0.0;
         double te = 0;
         double t = 0;
@@ -229,21 +229,21 @@ public class LennardJonesGas {
         cim.calculateCells();
 
         while (!finished) {
-            System.out.println(k + " " + fr + " " + t);
-            ioFr.output.append(k).append(" ").append(fr).append(" ").append(t);
-            Arrays.stream(particles).parallel().forEach(this::updatePosition);
+            ioFr.output.append(k).append(" ").append(fr).append(" ").append(t).append('\n');
+            Arrays.stream(particles).forEach(this::updatePosition);
             cim.calculateCells();
-            Arrays.stream(particles).parallel().forEach(this::updateAcceleration);
-            Arrays.stream(particles).parallel().forEach(this::updateVelocity);
+            Arrays.stream(particles).forEach(this::updateAcceleration);
+            Arrays.stream(particles).forEach(this::updateVelocity);
             fr = calculateFR();
             if (k % SAVE_CYCLE == 0) {
                 io.output.append(toString());
+                System.out.println(k + " " + fr + " " + t);
             }
             if (k % (SAVE_CYCLE * 100) == 0) { // write buffer to file and clean string buffer to save memory
                 io.handlePartialOutput();
-                k = 0;
+                ioFr.handlePartialOutput();
             }
-            if (fr >= 0.5) {
+            if (fr >= 0.46 && te < EPSILON) {
                 te = t;
                 System.out.println("Encontramos te: " + te + " en la iteracion: " + k);
             }
@@ -254,6 +254,6 @@ public class LennardJonesGas {
             k++;
         }
         io.handlePartialOutput();
-
+        ioFr.handlePartialOutput();
     }
 }
