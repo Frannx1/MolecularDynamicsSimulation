@@ -18,6 +18,15 @@ public class Particle {
         this.mass = mass;
     }
 
+    public Particle(int number, double x, double y, double vx, double vy, double mass) {
+        this.number = number;
+        xD[0] = x;
+        xD[1] = vx;
+        yD[0] = y;
+        yD[1] = vy;
+        this.mass = mass;
+    }
+
     public Particle(Particle particle) {
         this.xD[0] = particle.getXD()[0];
         this.yD[0] = particle.getYD()[0];
