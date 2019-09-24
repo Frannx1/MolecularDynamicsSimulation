@@ -46,14 +46,14 @@ public class App
             ljg.simulate2t(Double.parseDouble(args[1]), io, io2);
             Message.SimulationEnded.print();
         }
-        else if(args.length == 6 && args[0].equals("continue-lennard-2t")) {
+        else if(args.length == 7 && args[0].equals("continue-lennard-2t")) {
             IOManager io = new IOManager("continue-lennard-2t");
             IOManager io2 = new IOManager("continue-lennard-2t-fr");
             LennardJonesGas ljg = new LennardJonesGas();
             IOManager.PackParams p = io.readInputFiles(args[2], args[3], Long.parseLong(args[4]), Double.parseDouble(args[1]), io2);
             ljg.setParticles(p.particles);
             Message.SimulationRunning.print();
-            ljg.continueSimulate2t(Double.parseDouble(args[1]), p.t, Double.parseDouble(args[5]), p.k, io, io2);
+            ljg.continueSimulate2t(Double.parseDouble(args[6]), p.t, Double.parseDouble(args[5]), p.k, io, io2);
             Message.SimulationEnded.print();
         }
         else if(args.length == 4 && args[0].equals("lennard-t")) {

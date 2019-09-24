@@ -220,7 +220,7 @@ public class LennardJonesGas {
         p.setVx(p.getXD()[1] + 0.5 * dt * p.getXD()[2]);
         p.setVy(p.getYD()[1] + 0.5 * dt * p.getYD()[2]);
 
-        if (p.getVelocityModule() > 10) {
+        if (p.getVelocityModule() > 40) {
            p.setVx((p.getVx() / p.getVelocityModule()) * 10);
             p.setVy((p.getVy() / p.getVelocityModule()) * 10);
         }
@@ -256,7 +256,7 @@ public class LennardJonesGas {
                 ioFr.output.append(k).append(" ").append(fr).append(" ").append(t).append('\n');
                 System.out.println(k + " " + fr + " " + t);
             }
-            if (k % (SAVE_CYCLE * 25) == 0) { // write buffer to file and clean string buffer to save memory
+            if (k % (SAVE_CYCLE * 10) == 0) { // write buffer to file and clean string buffer to save memory
                 io.handlePartialOutput();
                 ioFr.handlePartialOutput();
             }
@@ -296,7 +296,7 @@ public class LennardJonesGas {
                 io.output.append(toString());
                 System.out.println(k + " " + fr + " " + t);
             }
-            if (k % (SAVE_CYCLE * 25) == 0) { // write buffer to file and clean string buffer to save memory
+            if (k % (SAVE_CYCLE * 10) == 0) { // write buffer to file and clean string buffer to save memory
                 io.handlePartialOutput();
                 ioFr.handlePartialOutput();
             }
@@ -339,7 +339,7 @@ public class LennardJonesGas {
                 ioFr.output.append(k).append(" ").append(fr).append(" ").append(t).append('\n');
                 System.out.println(k + " " + fr + " " + t);
             }
-            if (k % (SAVE_CYCLE * 25) == 0) { // write buffer to file and clean string buffer to save memory
+            if (k % (SAVE_CYCLE * 10) == 0) { // write buffer to file and clean string buffer to save memory
                 io.handlePartialOutput();
                 ioFr.handlePartialOutput();
             }

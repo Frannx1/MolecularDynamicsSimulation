@@ -113,8 +113,10 @@ public final class IOManager
         String[] lastArgs = Objects.requireNonNull(last).split(" ");
         return new PackParams(lastArgs[0], lastArgs[2]);
     }
-// continue-lennard-2t 0.00001 continue-lennard-2t-fr continue-lennard-2t 3293 0
-    // 330.5033898819554
+// continue-lennard-2t 0.00001 continue-lennard-2t-fr continue-lennard-2t 3380 331.8688 0.000001
+// continue-lennard-2t 0.00001 continue-lennard-2t-fr continue-lennard-2t 3380 331.8688 0.000001
+
+    // Encontramos te: 331.86884987850794 en la iteracion: 33186886
     public List<Particle> loadDynamicFile(String file, long nLines, double dt) {
         try (BufferedReader br = transferData(file, nLines, 1)) {
             Scanner scanner = new Scanner(br);
