@@ -17,11 +17,11 @@ public enum Message implements MessagePrinter {
             System.out.println("To simulate lennard jones:");
             System.out.println("lennard [DT] [number of particles]");
             System.out.println("To simulate lennard jones up to te, with a variation of the hole space:");
-            System.out.println("lennard-t [old DT] [number of particles] [hole space] [new DT]");
+            System.out.println("lennard-t [DT] [number of particles] [hole space]");
             System.out.println("To simulate lennard jones up to two te:");
             System.out.println("lennard-2t [DT] [number of particles]");
             System.out.println("To continue simulate lennard jones up to two te:");
-            System.out.println("continue-lennard-2t [DT] [tFile] [dynamicFile] [frame] [te]");
+            System.out.println("continue-lennard-2t [old DT] [tFile] [dynamicFile] [frame] [te] [new DT]");
             System.out.println("To simulate energy given a dt:");
             System.out.println("energy [DT] [number of particles]");
             System.out.println("To exit application: exit\n\n");
