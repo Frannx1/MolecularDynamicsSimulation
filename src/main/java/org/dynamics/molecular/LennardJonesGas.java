@@ -326,7 +326,7 @@ public class LennardJonesGas {
         io.output.append(toString()); // Append normal data
         cim.setParticles(particles);
         cim.calculateCells();
-        this.hole = hole;
+        this.hole = hole / 2.0;
 
         while (!finished) {
             Arrays.stream(particles).forEach(this::updatePosition);
