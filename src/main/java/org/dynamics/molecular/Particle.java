@@ -41,6 +41,14 @@ public class Particle {
         return number;
     }
 
+    public double getVx() {
+        return this.xD[1];
+    }
+
+    public double getVy() {
+        return this.yD[1];
+    }
+
     public void setX(double x){
         this.xD[0] = x;
     }
