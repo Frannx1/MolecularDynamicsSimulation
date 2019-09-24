@@ -74,9 +74,11 @@ public final class IOManager
             throw new RuntimeException();
         }
         long saveCycle = (long) ((1.0/dt) * 0.1);
-        long nLines = saveCycle * frame;
+        //long nLines = saveCycle * frame;
+        long nLines = frame;
         List<Particle> particles = loadDynamicFile(dynamicFile, frame * (N + 2), dt);
         PackParams p = ioT.loadTFile(tFile, nLines, 1);
+        //PackParams p = ioT.loadTFile(tFile, nLines, saveCycle);
         p.setParticles(particles);
         System.out.println("K value: " + p.k);
         System.out.println("T value: " + p.t);
@@ -94,7 +96,8 @@ public final class IOManager
         String[] lastArgs = Objects.requireNonNull(last).split(" ");
         return new PackParams(lastArgs[0], lastArgs[2]);
     }
-// continue-lennard-2t 0.00001 lennard-2t-fr lennard-2t 2800 0
+// continue-lennard-2t 0.00001 continue-lennard-2t-fr continue-lennard-2t 3293 0
+    // 330.5033898819554
     public List<Particle> loadDynamicFile(String file, long nLines, double dt) {
         try (BufferedReader br = transferData(file, nLines, 1)) {
             Scanner scanner = new Scanner(br);

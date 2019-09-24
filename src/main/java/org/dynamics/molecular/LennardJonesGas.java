@@ -251,7 +251,7 @@ public class LennardJonesGas {
                 ioFr.output.append(k).append(" ").append(fr).append(" ").append(t).append('\n');
                 System.out.println(k + " " + fr + " " + t);
             }
-            if (k % (SAVE_CYCLE * 50) == 0) { // write buffer to file and clean string buffer to save memory
+            if (k % (SAVE_CYCLE * 25) == 0) { // write buffer to file and clean string buffer to save memory
                 io.handlePartialOutput();
                 ioFr.handlePartialOutput();
             }
@@ -291,7 +291,7 @@ public class LennardJonesGas {
                 io.output.append(toString());
                 System.out.println(k + " " + fr + " " + t);
             }
-            if (k % (SAVE_CYCLE * 50) == 0) { // write buffer to file and clean string buffer to save memory
+            if (k % (SAVE_CYCLE * 25) == 0) { // write buffer to file and clean string buffer to save memory
                 io.handlePartialOutput();
                 ioFr.handlePartialOutput();
             }
@@ -334,7 +334,7 @@ public class LennardJonesGas {
                 ioFr.output.append(k).append(" ").append(fr).append(" ").append(t).append('\n');
                 System.out.println(k + " " + fr + " " + t);
             }
-            if (k % (SAVE_CYCLE * 50) == 0) { // write buffer to file and clean string buffer to save memory
+            if (k % (SAVE_CYCLE * 25) == 0) { // write buffer to file and clean string buffer to save memory
                 io.handlePartialOutput();
                 ioFr.handlePartialOutput();
             }
