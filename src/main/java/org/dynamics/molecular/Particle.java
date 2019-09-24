@@ -73,8 +73,6 @@ public class Particle {
         this.yD[2] = ay;
     }
 
-
-
     public void setNumber(int number) {
         this.number = number;
     }

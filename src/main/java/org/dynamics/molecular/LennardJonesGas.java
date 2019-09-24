@@ -221,7 +221,7 @@ public class LennardJonesGas {
         p.setVy(p.getYD()[1] + 0.5 * dt * p.getYD()[2]);
 
         if (p.getVelocityModule() > 40) {
-           p.setVx((p.getVx() / p.getVelocityModule()) * 10);
+            p.setVx((p.getVx() / p.getVelocityModule()) * 10);
             p.setVy((p.getVy() / p.getVelocityModule()) * 10);
         }
     }
