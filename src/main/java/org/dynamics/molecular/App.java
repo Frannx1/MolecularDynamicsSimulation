@@ -27,10 +27,9 @@ public class App
         if( args.length == 1 && args[0].equals("help"))
             Message.Help.print();
         else if(args.length == 2 && args[0].equals("compare")){
-            IOManager io = new IOManager("compareall" + args[1]);
             DampedArmonicOscilator dao = new DampedArmonicOscilator();
-            io.output = dao.simulate(5, Double.valueOf(args[1]));
-            io.generateOutputFiles();
+            dao.simulate(5, Double.valueOf(args[1]));
+            System.out.println("finish!");
         }
         else if(args.length == 3 && args[0].equals("lennard")) {
             IOManager io = new IOManager("lennard");

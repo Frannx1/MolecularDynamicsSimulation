@@ -47,14 +47,29 @@ public class DampedArmonicOscilator implements PhysicalSystemWithSolution {
 
     public StringBuffer simulate(double tMax, double dt){
         StringBuffer ret = new StringBuffer();
+        IOManager io = new IOManager("comapre-original" + dt);
         DampedArmonicOscilator dao = new DampedArmonicOscilator();
         for(double i = 0; i <= tMax; i+=dt){
             ret.append(dao.getPositionForCertainTime(i) + " ");
         }
         ret.append("\n");
+        io.generateOutputFiles(ret);
+
+        io = new IOManager("comapre-verlet" + dt);
+        ret = new StringBuffer();
         ret.append(ApproachMethod.VERLET.getApproachValue(tMax, dt, true));
+        io.generateOutputFiles(ret);
+
+        io = new IOManager("comapre-beeman" + dt);
+        ret = new StringBuffer();
         ret.append(ApproachMethod.BEEMAN.getApproachValue(tMax, dt, true));
+        io.generateOutputFiles(ret);
+
+        io = new IOManager("comapre-gear" + dt);
+        ret = new StringBuffer();
         ret.append(ApproachMethod.GEAR_PREDICTOR_CORRECTOR_ORDER_5.getApproachValue(tMax, dt, true));
+        io.generateOutputFiles(ret);
+
         return ret;
     }
 

@@ -46,6 +46,23 @@ public final class IOManager
         }
     }
 
+    public void generateOutputFiles(StringBuffer stringBuffer) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputName));
+            writer.write(stringBuffer.toString());
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
+            System.out.println(e.toString());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
+            System.out.println(e.toString());
+        }
+    }
+
     public void generateOutputFiles() {
         try {        
             BufferedWriter writer = new BufferedWriter(new FileWriter(outputName));
